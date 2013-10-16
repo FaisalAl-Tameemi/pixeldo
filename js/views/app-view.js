@@ -21,7 +21,9 @@ var app = app || {};
 		events: {
 			'keypress #new-todo': 'createOnEnter',
 			'click #clear-completed': 'clearCompleted',
-			'click #toggle-all': 'toggleAllComplete'
+			'click #toggle-all': 'toggleAllComplete', 
+			'click #add-touch': 'addOnTouch'
+			// F.T the events that go here are header events, main app events
 		},
 
 		// At initialization we bind to the relevant events on the `Todos`
@@ -30,11 +32,13 @@ var app = app || {};
 		initialize: function () {
 			// this.$el.addClass('loading');
 
+			// F.T. constructors 
 			this.allCheckbox = this.$('#toggle-all')[0];
 			this.$input = this.$('#new-todo');
 			this.$footer = this.$('#footer');
 			this.$main = this.$('#main');
 
+			// event listeners
 			this.listenTo(app.todos, 'add', this.addOne);
 			this.listenTo(app.todos, 'reset', this.addAll);
 			this.listenTo(app.todos, 'change:completed', this.filterOne);
@@ -74,7 +78,9 @@ var app = app || {};
 		// Add a single todo item to the list by creating a view for it, and
 		// appending its element to the `<ul>`.
 		addOne: function (todo) {
+			// F.T. create new instance of the todo item view
 			var view = new app.TodoView({ model: todo });
+			// F.T. add it to the list by appending the rendered view of the list item
 			$('#todo-list').append(view.render().el);
 		},
 
@@ -85,6 +91,7 @@ var app = app || {};
 		},
 
 		filterOne: function (todo) {
+			// F.T. raise a flap for an event listener
 			todo.trigger('visible');
 		},
 
@@ -108,6 +115,13 @@ var app = app || {};
 				return;
 			}
 
+			app.todos.create(this.newAttributes());
+			this.$input.val('');
+		},
+		addOnTouch: function(){
+			if (!this.$input.val().trim()) {
+				return;
+			}
 			app.todos.create(this.newAttributes());
 			this.$input.val('');
 		},

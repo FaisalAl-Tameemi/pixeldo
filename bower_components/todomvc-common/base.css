@@ -27,13 +27,21 @@ body {
 	line-height: 1.4em;
 	background: #eaeaea url('bg.png');
 	color: #4d4d4d;
-	width: 550px;
+	width: 88%;
 	margin: 0 auto;
 	-webkit-font-smoothing: antialiased;
 	-moz-font-smoothing: antialiased;
 	-ms-font-smoothing: antialiased;
 	-o-font-smoothing: antialiased;
 	font-smoothing: antialiased;
+}
+
+.add-touch{
+	padding: 10px 2%;
+	float: right;
+	position: absolute;
+	z-index: 999;
+	cursor: pointer;
 }
 
 #todoapp {
@@ -92,9 +100,10 @@ body {
 	background-size: cover;
 	height: 70px;
 	width: 70px;
+	left: 50%;
 	position: absolute;
 	margin-top: -30px;
-	margin-left: 60px;
+	margin-left: -200px;
 }
 
 #header {
@@ -155,6 +164,7 @@ body {
 	background: rgba(0, 0, 0, 0.02);
 	z-index: 2;
 	box-shadow: none;
+	width: 88%; 
 }
 
 #main {

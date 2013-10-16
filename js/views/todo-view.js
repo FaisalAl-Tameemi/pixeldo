@@ -16,8 +16,14 @@ var app = app || {};
 		template: _.template($('#item-template').html()),
 
 		// The DOM events specific to an item.
-		events: {
-			'click .toggle': 'toggleCompleted',
+		// _click : null,
+  		// _touch : null,
+  		// _tapped : null,
+
+        touchPrevents : false,
+
+        events : {
+			'click .toggle':  'toggleCompleted',
 			'dblclick label': 'edit',
 			'click .destroy': 'clear',
 			'keypress .edit': 'updateOnEnter',
